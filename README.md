@@ -1,210 +1,51 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>髙橋 三保子 | 言編み人</title>
-    <style>
-        :root { --main-color: #333333; --bg-color: #ffffff; --link-color: #666666; }
-        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; background-color: var(--bg-color); color: var(--main-color); margin: 0; padding: 0; line-height: 2.0; letter-spacing: 0.08em; }
-        
-        /* ヘッダー・メニュー */
-        header { max-width: 800px; margin: 0 auto; padding: 60px 20px 30px 20px; text-align: center; }
-        .site-title { font-size: 22px; font-weight: normal; letter-spacing: 0.15em; margin-bottom: 5px; }
-        .site-subtitle { font-size: 12px; color: #888; margin-bottom: 40px; letter-spacing: 0.2em; }
-        nav { border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 15px 0; margin-bottom: 5px; }
-        nav ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; gap: 40px; }
-        nav a { text-decoration: none; color: var(--link-color); font-size: 13px; letter-spacing: 0.1em; cursor: pointer; }
-        nav a:hover { color: #000; }
-        
-        /* メインコンテンツ表示エリア */
-        .container { max-width: 700px; margin: 40px auto; padding: 0 20px; min-height: 400px; }
-        .page-content { display: none; }
-        .page-content.active { display: block; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        /* ページごとの見出し */
-        h2 { font-size: 18px; font-weight: normal; text-align: center; margin-bottom: 40px; letter-spacing: 0.15em; color: #444; }
-        
-        /* WORKS（実績一覧のスタイル） */
-        .work-list { margin-top: 20px; }
-        .work-item { padding: 20px 0; border-bottom: 1px solid #f2f2f2; }
-        .work-item:last-child { border-bottom: none; }
-        .date { font-size: 12px; color: #aaa; margin-bottom: 5px; font-family: Georgia, serif; display: block; }
-        .title { font-size: 14px; font-weight: normal; color: #333; text-decoration: none; display: inline-block; }
-        .title:hover { color: #999; text-decoration: underline; }
-        
-        /* PROFILEのスタイル */
-        .profile-text { font-size: 14px; color: #444; line-height: 2.2; text-align: center; }
-        
-        /* 管理画面ポップアップ */
-        #admin-panel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); justify-content: center; align-items: center; z-index: 1000; }
-        .admin-box { background: white; padding: 30px; border-radius: 4px; width: 90%; max-width: 440px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); box-sizing: border-box; }
-        .admin-box h3 { margin-top: 0; font-size: 15px; font-weight: normal; border-left: 2px solid #333; padding-left: 10px; margin-bottom: 20px; }
-        .admin-box label { display: block; margin-top: 15px; font-size: 12px; font-weight: bold; color: #555; }
-        .admin-box input { width: 100%; padding: 10px; margin-top: 6px; border: 1px solid #ddd; border-radius: 3px; box-sizing: border-box; font-size: 13px; }
-        .admin-box input:focus { border-color: #333; outline: none; }
-        .btn-group { display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px; }
-        .btn { padding: 8px 18px; border: none; border-radius: 3px; cursor: pointer; font-size: 12px; }
-        .btn-save { background: #333; color: white; }
-        .btn-close { background: #eee; color: #333; }
-        
-        footer { text-align: center; padding: 80px 20px 40px 20px; font-size: 11px; color: #aaa; letter-spacing: 0.1em; border-top: 1px solid #fafafa; }
-    </style>
-</head>
-<body>
+# [mom-git-my-site](https://suidaikitaka.github.io/mom-git-my-site/)
 
-<header>
-    <div class="site-title">髙橋 三保子</div>
-    <div class="site-subtitle">言編み人</div>
-    <nav>
-        <ul>
-            <!-- href="javascript:void(0)" を追加してクリック可能に修正 -->
-            <li><a href="javascript:void(0)" onclick="showPage('home')">HOME</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('profile')">PROFILE/CONTACT</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('works')">WORKS</a></li>
-        </ul>
-    </nav>
-</header>
+髙橋 三保子のポートフォリオサイトです。
 
-<div class="container">
-    <!-- HOME ページ -->
-    <div id="page-home" class="page-content active">
-        <div class="profile-text" style="margin-top: 60px;">
-            <p>あなただけのストーリー、見つけます</p>
-            <p style="font-size: 12px; color: #888; margin-top: 20px;">上のメニューから各ページをご覧ください</p>
-        </div>
-    </div>
+## 特徴
 
-    <!-- PROFILE/CONTACT ページ -->
-    <div id="page-profile" class="page-content">
-        <h2>PROFILE / CONTACT</h2>
-        <div class="profile-text">
-            <p>言編み人 ／ ライター ／ エディター ／ エッセイスト</p>
-            <p>通信社記者を経てフリーランス。執筆は人事・HR領域や日本文化など。</p>
-            <p>人や組織のストーリーを引き出すインタビューが得意です。</p>
-            <p style="margin-top: 30px; font-size: 12px; color: #888;">お問い合わせは各種窓口よりお気軽にご連絡ください。</p>
-        </div>
-    </div>
+- **HOME** - ウェルカムページ
+- **PROFILE/CONTACT** - プロフィール・連絡先情報
+- **WORKS** - ライターとして手がけた仕事の紹介
 
-    <!-- WORKS ページ -->
-    <div id="page-works" class="page-content">
-        <h2>WORKS</h2>
-        <p style="font-size: 13px; color: #666; text-align: center; margin-bottom: 30px;">ライターとして手がけた仕事をご紹介します。</p>
-        <div id="works-container" class="work-list">
-            <!-- ここにデータが並びます -->
-        </div>
-    </div>
-</div>
+## 実績管理機能
 
-<!-- 隠し管理画面 -->
-<div id="admin-panel">
-    <div class="admin-box">
-        <h3>【管理者】実績の新規追加</h3>
-        <label>① 記事タイトル・企業名</label>
-        <input type="text" id="input-title" placeholder="例：【株式会社スタディスト】営業経験を活かして...">
-        
-        <label>② リンクするURL</label>
-        <input type="url" id="input-url" placeholder="https://example.com">
-        
-        <label>③ パスワード（GitHubトークン）</label>
-        <input type="password" id="input-token" placeholder="トークンを貼り付けてください">
+WORKSページの実績は `data.json` ファイルで管理されています。
 
-        <div class="btn-group">
-            <button class="btn btn-close" onclick="closeAdmin()">閉じる</button>
-            <button class="btn btn-save" onclick="saveToGitHub()">この内容でサイトを更新</button>
-        </div>
-    </div>
-</div>
+### 管理画面へのアクセス
 
-<footer>
-    Copyright © 2026 髙橋 三保子.
-</footer>
+ページを開いた状態で、**Ctrl + Shift + M** を同時に押すと、管理画面が表示されます。
 
-<script>
-const REPO = "suidaikitaka/mom-git-my-site"; 
-const FILE_PATH = "data.json";
+### 実績を追加する手順
 
-// タブ切り替えのシステム
-function showPage(pageId) {
-    document.querySelectorAll('.page-content').forEach(page => {
-        page.classList.remove('active');
-    });
-    const targetPage = document.getElementById(`page-${pageId}`);
-    if (targetPage) {
-        targetPage.classList.add('active');
-    }
-}
+1. **Ctrl + Shift + M** で管理画面を開く
+2. 以下の情報を入力：
+   - **記事タイトル・企業名** - 例：「【株式会社スタディスト】営業経験を活かして...」
+   - **リンクするURL** - 記事のリンク
+   - **パスワード（GitHubトークン）** - 更新に必要な認証情報
+3. 「この内容でサイトを更新」をクリック
 
-// 隠しコマンド（Ctrl + Shift + M）
-window.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
-        e.preventDefault();
-        document.getElementById('admin-panel').style.display = 'flex';
-    }
-});
+## デザイン
 
-function closeAdmin() { document.getElementById('admin-panel').style.display = 'none'; }
+参考URL: [hana-tsuki.themedia.jp](https://hana-tsuki.themedia.jp/)
 
-async function loadWorks() {
-    try {
-        const res = await fetch(`https://raw.githubusercontent.com/${REPO}/main/${FILE_PATH}?t=${Date.now()}`);
-        if (!res.ok) return;
-        const data = await res.json();
-        const container = document.getElementById('works-container');
-        container.innerHTML = "";
-        
-        data.reverse().forEach(item => {
-            container.innerHTML += `
-                <div class="work-item">
-                    <span class="date">${item.date}</span>
-                    <a href="${item.url}" target="_blank" class="title">${item.title}</a>
-                </div>`;
-        });
-    } catch (e) { console.error("データ読み込み失敗", e); }
-}
+カラースキーム：
+- メイン色：#473c34 (ブラウン)
+- 背景色：#f1f0e5 (ベージュ)
+- リンク色：#8d8148 (ゴールドブラウン)
 
-async function saveToGitHub() {
-    const title = document.getElementById('input-title').value;
-    const url = document.getElementById('input-url').value;
-    const token = document.getElementById('input-token').value;
-    if(!title || !url || !token) return alert("すべての項目を入力してください");
+## ローカルで実行
 
-    const today = new Date();
-    const dateStr = `${today.getFullYear()}.${String(today.getMonth()+1).padStart(2,'0')}.${String(today.getDate()).padStart(2,'0')}`;
-    
-    let currentData = [];
-    let sha = null;
-    try {
-        const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`);
-        if(res.ok) {
-            const json = await res.json();
-            sha = json.sha;
-            currentData = JSON.parse(atob(json.content));
-        }
-    } catch(e){}
+```bash
+python3 -m http.server 8000
+```
 
-    currentData.push({ date: dateStr, title: title, url: url });
+その後、ブラウザで `http://localhost:8000` にアクセスしてください。
 
-    const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`, {
-        method: "PUT",
-        headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
-        body: JSON.stringify({
-            message: "お母さんが実績を追加しました",
-            content: btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2)))),
-            sha: sha
-        })
-    });
+## GitHubに同期
 
-    if(putRes.ok) {
-        alert("ホームページの更新が成功しました！");
-        closeAdmin();
-        loadWorks();
-    } else {
-        alert("更新に失敗しました。トークンが間違っている可能性があります。");
-    }
-}
-window.onload = loadWorks;
-</script>
-</body>
-</html>
+```bash
+git add .
+git commit -m "変更内容の説明"
+git push origin main
+```

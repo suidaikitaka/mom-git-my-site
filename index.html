@@ -131,6 +131,10 @@
 <script>
 const REPO = "suidaikitaka/mom-git-my-site"; 
 const FILE_PATH = "data.json";
+const ADMIN_PASSWORD = "tV8Q9wZ71ISa";
+
+// パスワード入力を監視
+let passwordInput = '';
 
 // タブ切り替えのシステム
 function showPage(pageId) {
@@ -143,11 +147,31 @@ function showPage(pageId) {
     }
 }
 
-// 隠しコマンド（Ctrl + Shift + M）
-window.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
-        e.preventDefault();
+// パスワード入力で管理画面を開く
+window.addEventListener('keypress', function(e) {
+    passwordInput += e.key;
+    
+    // パスワード長を超えたら古い文字を削除
+    if (passwordInput.length > ADMIN_PASSWORD.length) {
+        passwordInput = passwordInput.slice(-ADMIN_PASSWORD.length);
+    }
+    
+    // パスワードと一致したかチェック
+    if (passwordInput === ADMIN_PASSWORD) {
         document.getElementById('admin-panel').style.display = 'flex';
+        passwordInput = ''; // リセット
+    }
+});
+
+// Enterで検証
+window.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && passwordInput !== '') {
+        if (passwordInput === ADMIN_PASSWORD) {
+            document.getElementById('admin-panel').style.display = 'flex';
+            passwordInput = '';
+        } else {
+            passwordInput = '';
+        }
     }
 });
 
