@@ -57,6 +57,14 @@
         .btn-close { background: white; color: var(--text-color); }
         .btn-close:hover { background: #f5f5f0; }
         
+        /* パスワード入力ページ */
+        #password-panel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
+        .password-box { background: white; padding: 40px; border-radius: 0; width: 90%; max-width: 400px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); text-align: center; }
+        .password-box h3 { margin-top: 0; font-size: 16px; font-weight: normal; color: var(--main-color); margin-bottom: 25px; }
+        .password-box input { width: 100%; padding: 12px; border: 1px solid #deddcd; border-radius: 0; box-sizing: border-box; font-size: 14px; color: #666; }
+        .password-box input:focus { border-color: var(--link-color); outline: none; background: #fafaf8; }
+        .password-box .btn-group { margin-top: 20px; }
+        
         footer { text-align: center; padding: 60px 20px; font-size: 11px; color: #999; letter-spacing: 0.05em; border-top: 1px solid #deddcd; background: white; margin-top: 80px; }
     </style>
 </head>
@@ -104,6 +112,18 @@
     </div>
 </div>
 
+<!-- パスワード入力ページ -->
+<div id="password-panel">
+    <div class="password-box">
+        <h3>管理者パスワード</h3>
+        <input type="password" id="password-input" placeholder="パスワードを入力してください" onkeypress="if(event.key==='Enter') verifyPassword()">
+        <div class="btn-group">
+            <button class="btn btn-close" onclick="closePasswordPanel()">キャンセル</button>
+            <button class="btn btn-save" onclick="verifyPassword()">確認</button>
+        </div>
+    </div>
+</div>
+
 <!-- 隠し管理画面 -->
 <div id="admin-panel">
     <div class="admin-box">
@@ -133,9 +153,6 @@ const REPO = "suidaikitaka/mom-git-my-site";
 const FILE_PATH = "data.json";
 const ADMIN_PASSWORD = "tV8Q9wZ71ISa";
 
-// パスワード入力を監視
-let passwordInput = '';
-
 // タブ切り替えのシステム
 function showPage(pageId) {
     document.querySelectorAll('.page-content').forEach(page => {
@@ -147,33 +164,32 @@ function showPage(pageId) {
     }
 }
 
-// パスワード入力で管理画面を開く
-window.addEventListener('keypress', function(e) {
-    passwordInput += e.key;
-    
-    // パスワード長を超えたら古い文字を削除
-    if (passwordInput.length > ADMIN_PASSWORD.length) {
-        passwordInput = passwordInput.slice(-ADMIN_PASSWORD.length);
-    }
-    
-    // パスワードと一致したかチェック
-    if (passwordInput === ADMIN_PASSWORD) {
-        document.getElementById('admin-panel').style.display = 'flex';
-        passwordInput = ''; // リセット
+// Ctrl+Shift+Mでパスワード入力ページを開く
+window.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
+        e.preventDefault();
+        document.getElementById('password-panel').style.display = 'flex';
+        document.getElementById('password-input').focus();
     }
 });
 
-// Enterで検証
-window.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && passwordInput !== '') {
-        if (passwordInput === ADMIN_PASSWORD) {
-            document.getElementById('admin-panel').style.display = 'flex';
-            passwordInput = '';
-        } else {
-            passwordInput = '';
-        }
+function closePasswordPanel() { 
+    document.getElementById('password-panel').style.display = 'none';
+    document.getElementById('password-input').value = '';
+}
+
+function verifyPassword() {
+    const inputPassword = document.getElementById('password-input').value;
+    if (inputPassword === ADMIN_PASSWORD) {
+        document.getElementById('password-panel').style.display = 'none';
+        document.getElementById('password-input').value = '';
+        document.getElementById('admin-panel').style.display = 'flex';
+    } else {
+        alert('パスワードが間違っています');
+        document.getElementById('password-input').value = '';
+        document.getElementById('password-input').focus();
     }
-});
+}
 
 function closeAdmin() { document.getElementById('admin-panel').style.display = 'none'; }
 
